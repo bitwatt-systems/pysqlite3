@@ -15,7 +15,7 @@ fi
 
 # Grab the pysqlite3 source code.
 if [[ ! -d "./pysqlite3" ]]; then
-  git clone git@github.com:coleifer/pysqlite3
+  git clone git@github.com:bitwatt-systems/pysqlite3
 fi
 
 # Copy the sqlite3 source amalgamation into the pysqlite3 directory so we can
@@ -24,7 +24,7 @@ cp "sqlite/sqlite3.c" pysqlite3/
 cp "sqlite/sqlite3.h" pysqlite3/
 
 # Create the wheels and strip symbols to produce manylinux wheels.
-docker run -it -v $(pwd):/io quay.io/pypa/manylinux2014_x86_64 /io/_build_wheels.sh
+docker run -it -v $(pwd):/io quay.io/pypa/manylinux2014_aarch64 /io/_build_wheels.sh
 
 # Remove un-stripped wheels.
 sudo rm ./wheelhouse/*-linux_*
